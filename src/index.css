@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.message-card:hover .delete-btn {
+  display: inline;
+}
+
+.message-card:hover .message-time {
+  display: none;
+}
+
+.delete-btn {
+  display: none;
+}
