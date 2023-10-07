@@ -17,7 +17,7 @@ const MessageCard = ({ message, deleteMessage }) => {
 
   return (
     <div key={message.id} className="p-3 bg-zinc-100 rounded-lg message-card">
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         <div className="bg-blue-700 rounded-md p-1 px-3 text-center grid place-content-center text-white user-initials">
           <span>{message.source[0]}</span>
         </div>
