@@ -17,16 +17,13 @@ function App() {
 
   const setAllMessages = async () => {
     let messagesArr = await apiService.getAllMessgaes();
-    console.log(messages);
     setMessages(messagesArr);
   };
 
   const sendMessage = async () => {
     if (message === "") return;
 
-    let response = await apiService.postMessage(message);
-
-    console.log(response);
+    await apiService.postMessage(message);
 
     setAllMessages();
   };
@@ -61,7 +58,6 @@ function App() {
       );
     }
 
-    console.log(tempMessages);
     setMessages(tempMessages);
     setSort(type);
   };

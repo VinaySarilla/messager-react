@@ -30,8 +30,7 @@ const postMessage = async (message) => {
     headers: headersList,
   });
 
-  let data = await response.text();
-  console.log(data);
+  await response.text();
 };
 
 const deleteMessage = async (id) => {

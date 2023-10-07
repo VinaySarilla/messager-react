@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 import { DeleteIcon } from "../Icons";
+import { useEffect } from "react";
 
 const MessageCard = ({ message, deleteMessage }) => {
+  useEffect(() => {
+    getDay(message.timestamp);
+  }, []);
+
   const getTime = (timestamp) => {
     //12 hours format
     let date = new Date(timestamp);
@@ -15,6 +20,21 @@ const MessageCard = ({ message, deleteMessage }) => {
     return strTime;
   };
 
+  const getDay = (timestamp) => {
+    let date = new Date(timestamp);
+    let day = date.getDate();
+
+    if (new Date().getDate() - day === 0) {
+      return "Today";
+    }
+
+    if (new Date().getDate() - day === 1) {
+      return "Yesterday";
+    }
+
+    return `${day}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  };
+
   return (
     <div key={message.id} className="p-3 bg-zinc-100 rounded-lg message-card">
       <div className="flex gap-4">
@@ -25,7 +45,8 @@ const MessageCard = ({ message, deleteMessage }) => {
         <div className="flex gap-2 items-center justify-between w-full">
           <p className="text-lg font-medium">{message.text}</p>
           <p className="text-xs text-zinc-500 message-time">
-            {getTime(message.timestamp)}
+            <span>{getDay(message.timestamp)},</span>
+            <span className="ml-2">{getTime(message.timestamp)}</span>
           </p>
           <button
             className="delete-btn text-red-600"
@@ -50,4 +71,3 @@ MessageCard.propTypes = {
 };
 
 export default MessageCard;
-
